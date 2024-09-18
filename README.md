@@ -6,7 +6,16 @@ Official Pytorch Code base for "Irregular agricultural field delineation using a
 
 ## Introduction
 
-We propose a boundary-field interaction network, namely BFINet, leveraging multitask learning techniques for AF delineation. BFINet comprises two branches: a core branch for AF delineation, and an auxiliary branch for boundary prediction that furnishes fine-grained boundary information to enhance geometric feature learning.
+We propose a boundary-field interaction network, namely BFINet, leveraging multitask learning techniques for AF delineation. BFINet comprises two branches: a core branch for AF delineation, and an auxiliary branch for boundary prediction that furnishes fine-grained boundary information to enhance geometric feature learning.  
+
+<p align="center">
+  <img src="imgs/BFINet.png" width="800"/>
+</p>
+
+<p align="center">
+  <img src="imgs/results.png" width="800"/>
+</p>
+
 
 ## Using the code:
 
@@ -29,7 +38,7 @@ tqdm
 ```
 
 ## Preprocessing
-Using the code preprocess.py and image_crop.py to obtain boundary maps and sample patches, respectively. 
+Using the code preprocess.py to obtain boundary maps.
 
 ## Data Format
 
@@ -61,7 +70,19 @@ For testing and validation datasets, the same structure as the above.
 
 ## Training and testing
 
-Our code will release after our paper is accepted.
+1. Train the model.
+```
+python train.py --train_path ./fields/image --save_path ./model --model_type 'field' 
+```
+2. Test the model.
+```
+python test.py --model_file ./model/100.pt --save_path ./save --model_type 'field' --test_path ./test_image
+```
+3. Accuracy evaluation.
+
+```
+run accuracy_evaluation.py 
+```
 
 ## A pretrained weight
 A pretrained weight of PVT-V2 on the ImageNet dataset is provided: https://drive.google.com/file/d/1uzeVfA4gEQ772vzLntnkqvWePSw84F6y/view?usp=sharing

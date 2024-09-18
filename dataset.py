@@ -1,7 +1,5 @@
 """
 The role of this file completes the data reading
-"dist_mask" is obtained by using Euclidean distance transformation on the mask
-"dist_contour" is obtained by using quasi-Euclidean distance transformation on the mask
 """
 
 import torch
@@ -171,19 +169,3 @@ def load_contour(path):
     return torch.from_numpy(np.expand_dims(contour, 0)).float()
 
 
-# def load_distance(path, distance_type):
-#
-#     if distance_type == "dist_mask":
-#         path = path.replace("image", "dist_mask").replace("tif", "mat")
-#
-#         dist = io.loadmat(path)["D2"]
-#
-#     if distance_type == "dist_contour":
-#         path = path.replace("image", "dist_contour").replace("tif", "mat")
-#         dist = io.loadmat(path)["D2"]
-#
-#     if distance_type == "dist_contour_tif":
-#         dist = cv2.imread(path.replace("image", "dist_contour").replace("tif", "tif"), 0)
-#         dist = dist/255.
-#
-#     return torch.from_numpy(np.expand_dims(dist, 0)).float()
